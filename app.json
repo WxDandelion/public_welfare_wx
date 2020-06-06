@@ -1,0 +1,97 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/catalog/catalog",
+    "pages/topic/topic",
+    "pages/cart/cart",
+    "pages/ucenter/index/index",
+    "component/home/index",
+    "pages/newGoods/newGoods",
+    "pages/hotGoods/hotGoods",
+    "pages/ucenter/address/address",
+    "pages/ucenter/addaddress/addaddress",
+    "pages/ucenter/order/order",
+    "pages/ucenter/orders-list/orders-list",
+    "pages/ucenter/orderDetail/orderDetail",
+    "pages/ucenter/feedback/feedback",
+    "pages/ucenter/sgin/index",
+    "pages/ucenter/coupon/coupon",
+    "pages/ucenter/integral/index",
+    "pages/ucenter/collect/collect",
+    "pages/auth/login/login",
+    "pages/auth/register/register",
+    "pages/auth/reset/reset",
+    "pages/pay/pay",
+    "pages/payResult/payResult",
+    "pages/comment/comment",
+    "pages/commentPost/commentPost",
+    "pages/topicComment/topicComment",
+    "pages/brand/brand",
+    "pages/brandDetail/brandDetail",
+    "pages/search/search",
+    "pages/category/category",
+    "pages/shopping/checkout/checkout",
+    "pages/shopping/address/address",
+    "pages/shopping/addaddress/addaddress",
+    "pages/goods/goods",
+    "pages/topicDetail/topicDetail",
+    "pages/auth/mobile/mobile",
+    "pages/shopping/selCoupon/selCoupon",
+    "pages/ucenter/help/help",
+    "pages/auth/btnAuth/btnAuth",
+    "pages/helpAdd/helpAdd",
+    "pages/ucenter/uservip/index",
+    "pages/welfare_rank/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "家公益",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+    "selectedColor": "#b4282d",
+    "color": "#666",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/ic_menu_choice_nor.png",
+        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/topic/topic",
+        "iconPath": "static/images/ic_menu_topic_nor.png",
+        "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
+        "text": "公益专题"
+      },
+      {
+        "pagePath": "pages/catalog/catalog",
+        "iconPath": "static/images/ic_menu_sort_nor.png",
+        "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+        "text": "公益商城"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "static/images/ic_menu_shoping_nor.png",
+        "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+        "text": "愿望篮"
+      },
+      {
+        "pagePath": "pages/ucenter/index/index",
+        "iconPath": "static/images/ic_menu_me_nor.png",
+        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

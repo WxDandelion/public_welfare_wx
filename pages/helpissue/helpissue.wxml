@@ -1,0 +1,27 @@
+<view class="container">
+    <view class="address-list" wx:if="{{ issueList.length > 0 }}">
+        <view class="item" wx:for="{{issueList}}" wx:key="{{item.userIssueVo.id}}" bindtap="issueDetail" data-issue-id="{{item.userIssueVo.id}}">
+            <view class="l">
+                <view class="name">{{item.userIssueVo.userName}}</view>
+                <view class="mobile">{{item.userIssueVo.mobile}}</view>
+            </view>
+            <view class="c">
+                <view class="address">序号：{{item.userIssueVo.sn}}</view>
+                <view class="address">地址：{{item.userIssueVo.provinceName+item.userIssueVo.cityName+item.userIssueVo.countyName}}</view>
+                <view class="address">求助类型：{{item.typeName}}</view>
+            </view>
+            <view class="r">
+            <view class='getAddress-text' wx:if="{{item.userIssueVo.approveStatus == 0}}">审核中</view>
+            <view class='getAddress-text' wx:if="{{item.userIssueVo.approveStatus == 1}}">已通过</view>
+            <view class='getAddress-text' wx:if="{{item.userIssueVo.approveStatus == 2}}">被拒绝</view>
+            <view class='getAddress-text' wx:if="{{item.userIssueVo.approveStatus == 3}}">如有疑问请联系客服</view>
+                <image catchtap="issueDetail" data-issue-id="{{item.userIssueVo.id}}" class="del" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/address-edit-7fee7b0d63.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="empty-view" wx:if="{{ issueList.length <= 0 }}">
+      <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png"></image>
+      <text class="text">求助信息在哪里</text>
+    </view>
+    <view class="add-address" bindtap="issueAddOrUpdate" data-issue-id="0">新建</view>
+</view>

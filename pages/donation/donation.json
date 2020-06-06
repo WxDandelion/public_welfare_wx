@@ -1,0 +1,6 @@
+{
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "home": "/component/home/index"
+  }
+}

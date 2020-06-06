@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "usingComponents": {
+    "home": "/component/home/index",
+    "modalView": "/component/modal/index"
+  }
+}

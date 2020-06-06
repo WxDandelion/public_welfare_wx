@@ -1,0 +1,11 @@
+<view class="container">
+    <scroll-view class="topic-list" scroll-y="true" scroll-top="{{scrollTop}}">
+        <navigator class="item" url="../donation/donation">
+            <image class="img" src="/static/images/518.jpeg"></image>
+        </navigator>
+        <view class="page" wx:if="{{showPage}}">
+            <view class="prev {{ page <= 1 ? 'disabled' : ''}}" bindtap="prevPage">上一页</view>
+            <view class="next {{ (count / size) < page +1 ? 'disabled' : ''}}" bindtap="nextPage">下一页</view>
+        </view>
+    </scroll-view>
+</view>

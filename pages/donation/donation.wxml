@@ -1,0 +1,40 @@
+<view class='donation'>
+  <view class='header'>
+    <view class='currentScore'>捐赠英雄榜</view>
+    <view class='line'></view>
+    <view class='picTxt acea-row'>
+         <view class='pictrue' data-url='/pages/ucenter/index/index' bindtap='goPages'><image src='{{userInfo.avatarUrl}}'></image></view>
+         <view class='text'>
+            <view class='acea-row row-middle'>
+               <view class='name line1' bindtap='goLogin'>{{userInfo.nickName ? userInfo.nickName : '请点击授权'}}</view>
+            </view>
+            <view class='acea-row row-middle'>
+               <view class='id' data-url='/pages/ucenter/user_info/index' bindtap='goPages' wx:if='{{uid}}'>ID：1000{{uid || 0}}<text class='iconfont icon-bianji1'></text></view>
+          </view>
+        </view>
+     </view>
+  </view>
+  <view class='wrapper'>
+      <view class='nav acea-row'>
+        <view class='item acea-row row-center-wrapper {{current==index?"on":""}}' 
+        wx:for='{{navList}}' bindtap='nav' data-idx='{{index}}' wx:key><text class='iconfont {{item.icon}}'></text>{{item.name}}</view>
+     </view>
+     <view class='list'>
+        <view class='tip acea-row row-middle'><text class='iconfont icon-shuoming'></text>提示：您的善行会被永远记住，谢谢您的爱心捐赠</view>
+        <view class='item acea-row row-between-wrapper'>
+          <view class='state'>爱心捐赠金额：￥</view>
+          <view><input bindinput="bindinputNum" value="{{Number}}" maxlength="15" type="number" placeholder="请输入您捐赠金额"/></view>
+          <view class='num'>元</view>
+        </view>
+        <view class='item acea-row row-between-wrapper'>
+              <view class='state'>爱心捐赠时间：{{addTime}}</view>
+        </view>
+         <view class='item acea-row row-between-wrapper'>
+              <view class='state'>认证社工编号：2019060381110000186</view>
+        </view>
+        <view class='btn acea-row row-between-wrapper' bindtap="goDonation">爱心捐赠</view>
+      </view>
+  </view>
+</view>
+<!--<authorize bind:onLoadFun="onLoadFun"></authorize>-->
+<home></home>

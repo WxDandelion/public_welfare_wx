@@ -1,0 +1,20 @@
+<form bindsubmit="formSubmit">
+    <view class='information'>
+        <view class="item" wx:if="{traces.length>0}">
+            <view class='information-li flex'><label>发布人员</label><text>{{traces.userName}}</text></view>
+            <view class='information-li flex'><label>联系电话</label><text>{{traces.mobile}}</text></view>
+            <view class='information-li flex'><label>所在地区</label><text class='areas' data-text="C">{{traces.provinceName}}{{traces.cityName}}{{traces.countyName}}</text></view>
+            <view class='information-li flex'><label>求助类型</label><text>{{issueType}}</text></view>
+            <view class='information-li flex'><label>求助描述</label><textarea class="content" maxlength="100" auto-focus="true" value="{{traces.content}}"/></view>
+        </view>
+    </view> 
+    <view class='default'><text bindtap='defaulttap' class='iconfont icon-duihao1 duihao {{_num==0?"active":""}}'></text>
+            通过
+            <text bindtap='defaulttap1' class='iconfont icon-duihao1 duihao {{_num==1?"active":""}}'></text>
+            拒绝
+    </view>
+    <view class='default'>
+            <textarea class="content" placeholder="请给出简单拒绝理由..."  bindinput ="contentInput" maxlength="100" auto-focus="true" value="{{content}}"/>
+    </view> 
+            <button class='but' formType="submit">提交审核</button>  
+</form>

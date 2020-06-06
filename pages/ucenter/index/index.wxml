@@ -1,0 +1,157 @@
+<view class='user'>
+   <view class='header bg-color acea-row row-between-wrapper'>
+      <view class='picTxt acea-row row-between-wrapper'>
+         <view class='pictrue' data-url='/pages/ucenter/index/index' bindtap='goPages'><image src='{{userInfo.avatarUrl}}'></image></view>
+         <view class='text'>
+            <view class='acea-row row-middle'>
+               <view class='name line1' bindtap='goLogin'>{{userInfo.nickName ? userInfo.nickName : '请点击授权'}}</view>
+               <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
+               <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
+            </view>
+            <view class='id' data-url='/pages/ucenter/user_info/index' bindtap='goPages' wx:if='{{uid}}'>ID：1000{{uid || 0}}<text class='iconfont icon-bianji1'></text></view>
+            <view wx:if="{{socialWorkId}}" class="social-id">{{"社工编号：" + socialWorkId}}</view>
+            <view wx:else bindtap="showBindModal" class="social-id">为社工？
+            <text class="social-id social-bind">点击绑定社工编号</text></view>
+         </view>
+      </view>
+      <text class='iconfont icon-shezhi' bindtap='Setting'></text>
+   </view>
+   <view class='wrapper'>
+      <view class='nav acea-row row-middle'>
+         <view class='item' hover-class='none'>
+            <view class='title'>用户类型</view>
+            <view class='text'><text class='iconfont icon-jingyanzhi' style="color:#FF654B;margin-right:8rpx;"></text>
+            {{userLevelDesc || "普通会员"}}</view>
+         </view>
+         <view class='item' hover-class='none'>
+            <view class='title'>注册时间</view>
+            <view class='text'><text class='iconfont icon-shenhezhong' style="color:#FF654B;margin-right:8rpx;"></text>{{userRegTime || "2019-10-01"}}</view>
+         </view>
+         <view class='item' hover-class='none' bindtap='coupons'>
+            <view class='title'>优惠券</view>
+            <view class='text'><text class='iconfont icon-youhuiquan' style="color:#FF654B;margin-right:8rpx;"></text>{{couponCount || 0}}</view>
+         </view>
+      </view>
+      <view class='myOrder'>
+        <view class='title acea-row row-between-wrapper'>
+           <view>我的爱心订单</view>
+           <view class='allOrder' data-url='/pages/ucenter/orders-list/orders-list' bindtap='goPages'>全部爱心订单<text class='iconfont icon-jiantou'></text></view>
+        </view>
+        <view class='orderState acea-row row-middle'>
+           <view class='item' data-url='/pages/ucenter/orders-list/orders-list?nowstatus=1' bindtap='goPages'>
+              <view class='pictrue'>
+                <image src='/images/dfk.png'></image>
+                <text class="order-status-num" wx:if="{{orderStatusNum.unpaid_count > 0}}">{{ orderStatusNum.unpaid_count }}</text>
+              </view>
+              <view>待付款</view>
+           </view>
+            <view class='item' data-url='/pages/ucenter/orders-list/orders-list?nowstatus=2' bindtap='goPages'>
+              <view class='pictrue'>
+                <image src='/images/dfh.png'></image>
+                <text class="order-status-num" wx:if="{{orderStatusNum.unshipped_count > 0}}">{{ orderStatusNum.unshipped_count }}</text>
+              </view>
+              <view>待发货</view>
+           </view>
+            <view class='item' data-url='/pages/ucenter/orders-list/orders-list?nowstatus=3' bindtap='goPages'>
+              <view class='pictrue'>
+              <image src='/images/dsh.png'></image>
+              <text class="order-status-num" wx:if="{{orderStatusNum.received_count > 0}}">{{ orderStatusNum.received_count }}</text>
+              </view>
+              <view>待收货</view>
+           </view>
+            <view class='item' data-url='/pages/ucenter/orders-list/orders-list?nowstatus=4' bindtap='goPages'>
+              <view class='pictrue'>
+              <image src='/images/dpj.png'></image>
+              <text class="order-status-num" wx:if="{{orderStatusNum.evaluated_count > 0}}">{{ orderStatusNum.evaluated_count }}</text>
+              </view>
+              <view>待评价</view>
+           </view>
+            <view class='item' data-url='/pages/user_return_list/index' bindtap='goPages'>
+              <view class='pictrue'>
+              <image src='/images/sh.png'></image>
+              <text class="order-status-num" wx:if="{{orderStatusNum.refund_count > 0}}">{{ orderStatusNum.refund_count }}</text>
+              </view>
+              <view>售后/退款</view>
+           </view>
+        </view>
+      </view>
+      <view class='myService'>
+      <view class='title acea-row row-middle'>我的公益服务</view>
+        <view class='serviceList acea-row row-middle'>
+           <view class='item'  bindtap='goTrace'>
+              <view class='pictrue'>
+                <image src='/images/dfk.png'></image>
+              </view>
+              <view>进度查询</view>
+           </view>
+            <view class='item' bindtap='welfarerank'>
+              <view class='pictrue'>
+                <image src='/images/dfh.png'></image>
+              </view>
+              <view>公益排行</view>
+           </view>
+            <view class='item' data-url='/pages/ucenter/integral/index' bindtap='goPages'>
+              <view class='pictrue'>
+              <image src='/images/dsh.png'></image>
+              </view>
+              <view>积分查询</view>
+           </view>
+            <view class='item' bindtap='collects'>
+              <view class='pictrue'>
+              <image src='/images/collection.png'></image>
+              </view>
+              <view>我的收藏</view>
+           </view>
+            <view class='item' bindtap='coupons'>
+              <view class='pictrue'>
+              <image src='/images/coupon.png'></image>
+              </view>
+              <view>优惠劵</view>
+           </view>
+           <view class='item' bindtap='goAddress'>
+              <view class='pictrue'>
+              <image src='/images/address.png'></image>
+              </view>
+              <view>地址管理</view>
+           </view>
+           <view class='item' bindtap='goUser'>
+              <view class='pictrue'>
+              <image src='/images/memberCenter.png'></image>
+              </view>
+              <view>会员中心</view>
+           </view>
+           <view class='item' bindtap='goSign'>
+              <view class='pictrue'>
+              <image src='/images/alter.png'></image>
+              </view>
+              <view>我要签到</view>
+           </view>
+        </view>
+      </view>
+      <view class='myService'>
+         <view class='title acea-row row-middle'>帮助中心</view>
+         <view class='serviceList acea-row row-middle'>
+            <view class='item' bindtap='goFeedback'>
+              <view class='pictrue'>
+              <image src='/images/feedback.png'></image>
+              </view>
+              <view>我要反馈</view>
+            </view>  
+            <button class='item' open-type='contact' hover-class='none'>
+              <view class='pictrue'><image src='/images/customer.png'></image></view>
+              <view>联系客服</view>
+            </button>
+         </view>
+      </view>
+   </view >
+      <view class='company'>益莲科技技术支持 © Elysion.cn</view>
+</view>
+<modalView show="{{showModal}}" height='20%' bindcancel="modalCancel" bindconfirm='modalConfirm'>
+   <view class='input-content'> 
+      <text>社工编码：</text>
+      <input value='{{inputValue}}' name='socialWorkId' placeholder="请输入社工编码" bindinput="bindInputValue"></input>
+   </view>
+</modalView>
+<home></home>
+   
+

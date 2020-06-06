@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "积分查询",
+  "usingComponents": {
+    "home": "/component/home/index"
+  }
+}

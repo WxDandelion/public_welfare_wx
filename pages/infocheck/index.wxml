@@ -1,0 +1,22 @@
+<view class="container">
+    <view class="address-list" wx:if="{{ issueList.length > 0 }}">
+        <view class="item" wx:for="{{issueList}}" wx:key="{{item.userIssueVo.id}}" bindtap="issueAddOrUpdate" data-issue-id="{{item.userIssueVo.id}}">
+            <view class="l">
+                <view class="name">{{item.userIssueVo.userName}}</view>
+                <view class="mobile">{{item.userIssueVo.mobile}}</view>
+            </view>
+            <view class="c">
+                <view class="address">序号：{{item.userIssueVo.sn}}</view>
+                <view class="address">地址：{{item.userIssueVo.provinceName+item.userIssueVo.cityName+item.userIssueVo.countyName}}</view>
+                <view class="address">求助类型：{{item.typeName}}</view>
+            </view>
+            <view class="r">
+                <image catchtap="issueAddOrUpdate" data-issue-id="{{item.userIssueVo.id}}" class="del" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/address-edit-7fee7b0d63.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="empty-view" wx:if="{{ issueList.length <= 0 }}">
+      <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png"></image>
+      <text class="text">没有求助信息需要审核，请您继续休息</text>
+    </view>
+</view>
