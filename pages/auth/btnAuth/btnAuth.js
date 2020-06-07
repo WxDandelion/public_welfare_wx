@@ -72,6 +72,7 @@ Page({
           wx.setStorageSync('userTaskIntegral', res.data.userTaskIntegral);
           wx.setStorageSync('userMobile', res.data.userMobile);
           wx.setStorageSync('userLevelId', res.data.userlevelId);
+          wx.setStorageSync('socialNumber', res.data.socialNumber);
         } else {
           // util.showErrorToast(res.errmsg)
           wx.showModal({

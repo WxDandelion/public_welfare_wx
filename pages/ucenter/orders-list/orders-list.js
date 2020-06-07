@@ -9,12 +9,12 @@ Page({
    */
   data: {
     //url: app.globalData.urlImages,
-    page: 1,
+    page: [1, 1, 1, 1, 1],
     size: 5,
-    nomore: false,
-    totalPages: 1,
-    nowstatus:"",
-    orderlist: [],
+    nomore: [false, false, false, false, false],
+    totalPages: [],
+    nowstatus: "",
+    orderlist: [[],[],[],[],[]],
     orderlist_all: [],
     search: "",
     title: "暂无订单",
@@ -30,23 +30,30 @@ Page({
   onLoad: function (options) {
     app.setBarColor();
     app.setUserInfo();
-    if (parseInt(options.nowstatus)){
-      this.setData({
-        nowstatus: (parseInt(options.nowstatus) - 1).toString()
-      })
-      this.getorderlist(parseInt(options.nowstatus) - 1);
-    } else {
-      this.getorderlist("");
-    }
+    this.setData({
+      nowstatus: parseInt(options.nowstatus) - 1
+    });
+    this.getorderlist(parseInt(options.nowstatus) - 1);
+    // if (parseInt(options.nowstatus)){
+    //   this.setData({
+    //     nowstatus: (parseInt(options.nowstatus) - 1).toString()
+    //   })
+    //   this.getorderlist(parseInt(options.nowstatus) - 1);
+    // } else {
+    //   this.getorderlist("");
+    // }
   },
   getorderlist:function(e){
-    
     var that = this;
     var search = that.data.search;
-    var status = e;
-    if (that.data.totalPages <= that.data.page - 1) {
+    let status = e;
+    //let status = that.data.nowstatus;
+    let total = that.data.totalPages;
+    let nomore = that.data.nomore;
+    if (total[status + 1] && total[status + 1] <= that.data.page[status + 1] - 1) {
+      nomore[status + 1] = true; 
       that.setData({
-        nomore: true,
+        nomore: nomore,
         title: "全部加载完成",
         hidden: true
       })
@@ -57,19 +64,28 @@ Page({
       title: "玩命加载中..."
     })
     */
+   let orderlist = that.data.orderlist;
+   let page = that.data.page;
    let params = {
-     page: that.data.page,
+     page: page[status + 1],
      size: that.data.size,
-     status: that.data.nowstatus
-   }
+     status: status
+   };
     util.request(api.OrderList, params).then(function (res) {
       if (res.errno === 0) {
+        total[status + 1] = res.data.totalPages;
+        page[status + 1] = res.data.currentPage + 1
+        if(orderlist[status + 1].length) {
+          orderlist[status + 1] = orderlist[status + 1].concat(res.data.data);
+        } else {
+          orderlist[status + 1] = res.data.data;
+        }
         that.setData({
           title: "加载更多",
           orderlist_all: res.data.data,
-          page: res.data.currentPage + 1,
-          totalPages: res.data.totalPages,
-          orderlist: that.data.orderlist.length ? that.data.orderlist.concat(res.data.data) : res.data.data
+          page: page,
+          totalPages: total,
+          orderlist: orderlist
         })
         wx.hideLoading();
       }
@@ -79,22 +95,21 @@ Page({
     var nowstatus = e.currentTarget.dataset.show;
     this.setData({
        nowstatus: nowstatus,
-       page:1,
-       orderlist: [],
        title: "玩命加载中...",
        hidden: false
     });
     this.getorderlist(nowstatus);
   },
   searchSubmit:function(){
-    this.setData({
-      orderlist: [],
-      page:1,
-      title: "玩命加载中...",
-      hidden: false
-    });
-    var e = this.data.nowstatus;
-    this.getorderlist(e);
+    // 待修改
+    // this.setData({
+    //   orderlist: [],
+    //   page:1,
+    //   title: "玩命加载中...",
+    //   hidden: false
+    // });
+    // var e = this.data.nowstatus;
+    // this.getorderlist(e);
   },
   searchInput:function(e){
     this.setData({
@@ -147,12 +162,12 @@ Page({
       }
     })
   },
-  onReachBottom: function () {
-    var e = this.data.nowstatus;
-    this.getorderlist(e);
-  },
+  // onReachBottom: function () {
+  //   var e = this.data.nowstatus;
+  //   this.getorderlist(e);
+  // },
   loadMore: function() {
     let that = this;
-    that.getorderlist();
+    that.getorderlist(that.data.nowstatus);
   }
 })

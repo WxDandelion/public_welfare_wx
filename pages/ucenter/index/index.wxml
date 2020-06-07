@@ -35,7 +35,7 @@
       <view class='myOrder'>
         <view class='title acea-row row-between-wrapper'>
            <view>我的爱心订单</view>
-           <view class='allOrder' data-url='/pages/ucenter/orders-list/orders-list' bindtap='goPages'>全部爱心订单<text class='iconfont icon-jiantou'></text></view>
+           <view class='allOrder' data-url='/pages/ucenter/orders-list/orders-list？nowstatus=0' bindtap='goPages'>全部爱心订单<text class='iconfont icon-jiantou'></text></view>
         </view>
         <view class='orderState acea-row row-middle'>
            <view class='item' data-url='/pages/ucenter/orders-list/orders-list?nowstatus=1' bindtap='goPages'>

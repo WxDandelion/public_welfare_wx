@@ -49,6 +49,7 @@ Page({
   	let token = wx.getStorageSync('token');
     let uid = wx.getStorageSync('userId');
     let userRegTime = wx.getStorageSync('userRegTime');
+    let socialNumber = wx.getStorageSync('socialNumber');
     var len =new Date(userRegTime);
     var RegTime=utils.formatDate(len);
 
@@ -60,9 +61,11 @@ Page({
      that.setData({
       userInfo: app.globalData.userInfo,
       userRegTime:RegTime,
-      uid: uid
+      uid: uid,
+      socialWorkId: socialNumber
     })
      this.getuserLevel();
+     this.getSocialNumber();
   }, 
 
   getuserLevel:function(){
@@ -95,7 +98,82 @@ Page({
       }) 
     } 
   },
-
+  /**
+   * 绑定弹窗关闭
+   */
+  modalCancel: function() {
+    this.setData({
+      socialWorkInput: "",
+      inputValue: ""
+    })
+  },
+  /**
+   * 社工绑定弹窗 绑定确定 按钮
+   */
+  modalConfirm: function() {
+    let that = this;
+    // 请求绑定社工编号
+    //api.SocialNumberBind + '?number=' + that.data.socialWorkInput
+    utils.request(api.SocialNumberBind, {number: that.data.socialWorkInput}).then(function (res) {
+      if (res.errno === 0) {
+        wx.setStorage({
+          key: "socialNumber",
+          data: that.data.socialWorkInput
+        });
+        that.setData({
+          socialWorkId: that.data.socialWorkInput
+        })
+      } else {
+        wx.showToast({
+          title: '绑定失败，请稍后再试',
+          duration: 2000
+        })
+      }
+      that.setData({
+        inputValue: ""
+      })
+    }) 
+  },
+  /**
+   * 获取输入框内容
+   * @param {*} e 
+   */
+  bindInputValue: function(e) {
+    let that = this;
+    that.setData({
+      socialWorkInput: e.detail.value
+    })
+  },
+  /**
+   * 控制弹窗开启
+   */
+  showBindModal: function() {
+    this.setData({
+      showModal: true,
+    })
+  },
+  /**
+   * 获取个人社工信息
+   * 若所有登陆都获取到了社工信息，这部分则可以省去
+   */
+  getSocialNumber: function() {
+    let that = this;
+    if(wx.getStorageSync('token') && !that.data.socialWorkId) {
+      utils.request(api.CheckIsSocial).then(function (res) {
+        if (res.errno === 0) {
+          if (res.data) {
+            wx.setStorage({
+              key: "socialNumber",
+              data: res.data.socialNumber
+            });
+            that.setData({
+              socialWorkId: "",
+            });
+          } 
+        }
+      }) 
+    }
+  },
   /**
     * 生命周期函数--登录
     */
@@ -224,30 +302,6 @@ Page({
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
-    })
-  },
-  modalCancel: function() {
-    this.setData({
-      socialWorkInput: "",
-      inputValue: ""
-    })
-  },
-  modalConfirm: function() {
-    let that = this;
-    // 请求绑定社工编号
-    that.setData({
-      inputValue: ""
-    })
-  },
-  bindInputValue: function(e) {
-    let that = this;
-    that.setData({
-      socialWorkInput: e.detail.value
-    })
-  },
-  showBindModal: function() {
-    this.setData({
-      showModal: true
     })
   }
 })

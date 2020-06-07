@@ -19,7 +19,7 @@ Page({
     navList: ["周排行", "月排行"],
     active: 0,
     rankList:[],
-    page: 2,
+    page: 1,
     limit:10,
     size: 5,
     loadend:false,
@@ -34,7 +34,7 @@ Page({
     this.setData({
       active: index,
       type: index ? 'month': 'week',
-      page: 2,
+      page: 1,
       loadend:false,
       rankList:[],
     });

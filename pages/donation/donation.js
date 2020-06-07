@@ -83,11 +83,8 @@ Page({
        title: '提示',
        content: warn
      })
-    //  {
-    //   balance:wmoney
-    // }
    } else {
-     util.request(api.Donation + "?balance=" + wmoney).then(function (res) {
+     util.request(api.Donation, {balance: wmoney}).then(function (res) {
          if (res.errno === 0) {
            wx.navigateTo({
              url: '/pages/certify/certify?id='+uid+'&nmoney='+wmoney

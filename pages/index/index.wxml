@@ -136,7 +136,7 @@
      <view class='wrapper' wx:if="{{newWelfare.length}}">
        <view class='title acea-row row-between-wrapper'>
           <view class='text'>
-             <view class='name line1'>最新求助<text class='new font-color'>NEW~</text></view>
+             <view class='name line1'>求助热点<text class='new font-color'>HOT~</text></view>
              <view class='line1'>{{firstInfo}}</view>
           </view>
           <navigator class='more' hover-class="none" url='/pages/first-new-product/index?type=3'>更多<text class='iconfont icon-jiantou'></text></navigator>
@@ -158,7 +158,7 @@
     <view class='wrapper' wx:if="{{newGoods.length}}">
        <view class='title acea-row row-between-wrapper'>
           <view class='text'>
-             <view class='name line1'>首发新品<text class='new font-color'>NEW~</text></view>
+             <view class='name line1'>公益商品<text class='new font-color'>NEW~</text></view>
              <view class='line1'>{{firstInfo}}</view>
           </view>
           <navigator class='more' hover-class="none" url='/pages/first-new-product/index?type=3'>更多<text class='iconfont icon-jiantou'></text></navigator>

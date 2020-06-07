@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://192.168.0.100:8080/platform/api/';
+const API_BASE_URL = 'http://localhost:8080/platform/api/';
 // http://62.234.138.48:80/api/
 //'http://192.168.1.194:8080/platform/api/';
 //'http://192.168.1.2:8080/platform-framework/api/';
@@ -78,6 +78,8 @@ module.exports = {
     IntegralType: API_BASE_URL + 'user/getIntegratebyTypeId', //积分分类查询
     Donation: API_BASE_URL + 'user/donation', //捐赠记录
     SignToday: API_BASE_URL + 'user/signToday', //今日签到
+    SocialNumberBind: API_BASE_URL + 'user/social', //社工编号绑定
+    CheckIsSocial: API_BASE_URL + 'user/checkIsSocial', //社工信息
     Login: API_BASE_URL + 'auth/login', //账号登录
     Register: API_BASE_URL + 'register/register', //注册
     CouponList: API_BASE_URL + 'coupon/list', // 优惠券列表

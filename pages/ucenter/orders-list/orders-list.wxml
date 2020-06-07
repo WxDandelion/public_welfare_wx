@@ -3,14 +3,14 @@
   <view class='iconfont icon-xiazai5'></view>
 </view>
 <view class='menu flex'>
-  <view class='item {{nowstatus == "" ? "on" : ""}}' data-show="" bindtap="statusClick">全部</view>
-  <view class='item {{nowstatus == "0" ? "on" : ""}}'  data-show="0" bindtap="statusClick">待付款</view>
-  <view class='item {{nowstatus == "1" ? "on" : ""}}'  data-show="1" bindtap="statusClick">待发货</view>
-  <view class='item {{nowstatus == "2" ? "on" : ""}}'  data-show="2" bindtap="statusClick">待收货</view>
-  <view class='item {{nowstatus == "3" ? "on" : ""}}'  data-show="3" bindtap="statusClick">待评价</view>
+  <view class='item {{nowstatus == -1 ? "on" : ""}}' data-show="" bindtap="statusClick">全部</view>
+  <view class='item {{nowstatus == 0 ? "on" : ""}}'  data-show="0" bindtap="statusClick">待付款</view>
+  <view class='item {{nowstatus == 1 ? "on" : ""}}'  data-show="1" bindtap="statusClick">待发货</view>
+  <view class='item {{nowstatus == 2 ? "on" : ""}}'  data-show="2" bindtap="statusClick">待收货</view>
+  <view class='item {{nowstatus == 3 ? "on" : ""}}'  data-show="3" bindtap="statusClick">待评价</view>
 </view>
 <scroll-view scroll-y="true" class='orders-list' bindscrolltolower="loadMore">
-  <block wx:for="{{orderlist}}">
+  <block wx:for="{{orderlist[nowstatus]}}">
       <view class='items'>
         <view class='numbers flex'>
             <view><text>订单号</text>：{{item.order_sn}}</view>

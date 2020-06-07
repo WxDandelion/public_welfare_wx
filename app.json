@@ -46,7 +46,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "家公益",
+    "navigationBarTitleText": "公益家",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
@@ -72,7 +72,7 @@
         "pagePath": "pages/catalog/catalog",
         "iconPath": "static/images/ic_menu_sort_nor.png",
         "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
-        "text": "公益商城"
+        "text": "公益"
       },
       {
         "pagePath": "pages/cart/cart",
