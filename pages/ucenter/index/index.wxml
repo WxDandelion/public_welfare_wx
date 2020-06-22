@@ -1,17 +1,19 @@
 <view class='user'>
    <view class='header bg-color acea-row row-between-wrapper'>
       <view class='picTxt acea-row row-between-wrapper'>
-         <view class='pictrue' data-url='/pages/ucenter/index/index' bindtap='goPages'><image src='{{userInfo.avatarUrl}}'></image></view>
+         <view class='pictrue' data-url='/pages/ucenter/index/index' bindtap='goPages'><image src="{{userInfo.avatarUrl}}"></image></view>
          <view class='text'>
-            <view class='acea-row row-middle'>
+            <view class='acea-row row-middle nickName-group'>
                <view class='name line1' bindtap='goLogin'>{{userInfo.nickName ? userInfo.nickName : '请点击授权'}}</view>
-               <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
-               <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
+               <view class='member acea-row row-middle' wx:if="{{userInfo.nickName}}" bindtap='exitLogin'>
+               <image src='/static/images/exit-icon.png'></image></view>
+               <!-- <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
+               <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view> -->
             </view>
-            <view class='id' data-url='/pages/ucenter/user_info/index' bindtap='goPages' wx:if='{{uid}}'>ID：1000{{uid || 0}}<text class='iconfont icon-bianji1'></text></view>
+            <view class='id' data-url='/pages/ucenter/user_info/index' bindtap='showIdModal'>{{idForShow ? "ID：" + idForShow : "立刻设置自己的专属ID"}}<text class='iconfont icon-bianji1'></text></view>
             <view wx:if="{{socialWorkId}}" class="social-id">{{"社工编号：" + socialWorkId}}</view>
-            <view wx:else bindtap="showBindModal" class="social-id">为社工？
-            <text class="social-id social-bind">点击绑定社工编号</text></view>
+            <view wx:else bindtap="showBindModal" class="social-id">如果您是社工，
+            <text class="social-id social-bind">请点击绑定社工编号</text></view>
          </view>
       </view>
       <text class='iconfont icon-shezhi' bindtap='Setting'></text>
@@ -21,21 +23,21 @@
          <view class='item' hover-class='none'>
             <view class='title'>用户类型</view>
             <view class='text'><text class='iconfont icon-jingyanzhi' style="color:#FF654B;margin-right:8rpx;"></text>
-            {{userLevelDesc || "普通会员"}}</view>
+            {{userLevelDesc || "公益家"}}</view>
          </view>
          <view class='item' hover-class='none'>
             <view class='title'>注册时间</view>
-            <view class='text'><text class='iconfont icon-shenhezhong' style="color:#FF654B;margin-right:8rpx;"></text>{{userRegTime || "2019-10-01"}}</view>
+            <view class='text'><text class='iconfont icon-shenhezhong' style="color:#FF654B;margin-right:8rpx;"></text>{{userRegTime || "尚未注册"}}</view>
          </view>
-         <view class='item' hover-class='none' bindtap='coupons'>
+         <!-- <view class='item' hover-class='none' bindtap='coupons'>
             <view class='title'>优惠券</view>
             <view class='text'><text class='iconfont icon-youhuiquan' style="color:#FF654B;margin-right:8rpx;"></text>{{couponCount || 0}}</view>
-         </view>
+         </view> -->
       </view>
       <view class='myOrder'>
         <view class='title acea-row row-between-wrapper'>
            <view>我的爱心订单</view>
-           <view class='allOrder' data-url='/pages/ucenter/orders-list/orders-list？nowstatus=0' bindtap='goPages'>全部爱心订单<text class='iconfont icon-jiantou'></text></view>
+           <view class='allOrder' data-url='/pages/ucenter/orders-list/orders-list?nowstatus=0' bindtap='goPages'>全部爱心订单<text class='iconfont icon-jiantou'></text></view>
         </view>
         <view class='orderState acea-row row-middle'>
            <view class='item' data-url='/pages/ucenter/orders-list/orders-list?nowstatus=1' bindtap='goPages'>
@@ -78,7 +80,7 @@
       <view class='myService'>
       <view class='title acea-row row-middle'>我的公益服务</view>
         <view class='serviceList acea-row row-middle'>
-           <view class='item'  bindtap='goTrace'>
+           <!-- <view class='item'  bindtap='goTrace'>
               <view class='pictrue'>
                 <image src='/images/dfk.png'></image>
               </view>
@@ -89,25 +91,31 @@
                 <image src='/images/dfh.png'></image>
               </view>
               <view>公益排行</view>
-           </view>
+           </view> -->
             <view class='item' data-url='/pages/ucenter/integral/index' bindtap='goPages'>
               <view class='pictrue'>
               <image src='/images/dsh.png'></image>
               </view>
               <view>积分查询</view>
            </view>
-            <view class='item' bindtap='collects'>
+           <view class='item' bindtap='goSign'>
+              <view class='pictrue'>
+              <image src='/images/alter.png'></image>
+              </view>
+              <view>我要签到</view>
+           </view>
+            <!-- <view class='item' bindtap='collects'>
               <view class='pictrue'>
               <image src='/images/collection.png'></image>
               </view>
               <view>我的收藏</view>
-           </view>
-            <view class='item' bindtap='coupons'>
+           </view> -->
+            <!-- <view class='item' bindtap='coupons'>
               <view class='pictrue'>
               <image src='/images/coupon.png'></image>
               </view>
               <view>优惠劵</view>
-           </view>
+           </view> -->
            <view class='item' bindtap='goAddress'>
               <view class='pictrue'>
               <image src='/images/address.png'></image>
@@ -118,13 +126,7 @@
               <view class='pictrue'>
               <image src='/images/memberCenter.png'></image>
               </view>
-              <view>会员中心</view>
-           </view>
-           <view class='item' bindtap='goSign'>
-              <view class='pictrue'>
-              <image src='/images/alter.png'></image>
-              </view>
-              <view>我要签到</view>
+              <view>公益家服务</view>
            </view>
         </view>
       </view>
@@ -141,6 +143,12 @@
               <view class='pictrue'><image src='/images/customer.png'></image></view>
               <view>联系客服</view>
             </button>
+             <view class='item' bindtap='bindDonation'>
+              <view class='pictrue'>
+              <image src='/images/examine.png'></image>
+              </view>
+              <view>公益认领</view>
+            </view>  
          </view>
       </view>
    </view >
@@ -150,6 +158,24 @@
    <view class='input-content'> 
       <text>社工编码：</text>
       <input value='{{inputValue}}' name='socialWorkId' placeholder="请输入社工编码" bindinput="bindInputValue"></input>
+   </view>
+</modalView>
+<modalView show="{{showIdModal}}" height='20%' bindcancel="modifyCancel" bindconfirm='modifyConfirm'>
+   <view class='input-content'> 
+      <text>ID：</text>
+      <input value='{{idValue}}' name='idForShow' placeholder="请输入要设置的个人ID" bindinput="bindIdValue"></input>
+   </view>
+</modalView>
+<modalView show="{{showBindModal}}" height='25%' bindcancel="donationCancel" bindconfirm='donationConfirm'>
+   <view class="donation-group">
+   <view class='donation-content'> 
+      <text>姓名：</text>
+      <input value='{{nameValue}}' name='name' placeholder="请输入捐赠时登记的姓名" bindinput="bindNameValue"></input>
+   </view>
+    <view class='donation-content'> 
+      <text>金额：</text>
+      <input value='{{moneyValue}}' name='money' placeholder="请输入已捐赠的金额以便核对认领" bindinput="bindMoneyValue"></input>
+   </view>
    </view>
 </modalView>
 <home></home>

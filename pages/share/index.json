@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "分享",
+  "usingComponents": {
+    "painter": "/component/painter/painter",
+    "modalView": "/component/modal/index"
+  }
+}

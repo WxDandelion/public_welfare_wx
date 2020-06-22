@@ -3,6 +3,8 @@
     <import src="../../lib/wxParse/wxParse.wxml"/> 
     <template is="wxParse" data="{{wxParseData:topicDetail.nodes}}"/>
   </scroll-view>
+  <navigator wx:if="{{topic.id == 999}}" hover-class="none"  url='/pages/joinTopic/joinTopic' class="btn-wrapper"><button class="mini-btn" plain="true" type="primary">申请参会</button></navigator>
+  <navigator wx:else hover-class="none"  url='/pages/share/index?type=2' class="btn-wrapper"><button class="mini-btn" plain="true" type="primary">分享活动</button></navigator>
   <view class="topic-goods">
   </view>
   <scroll-view class="comments">

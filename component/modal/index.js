@@ -13,6 +13,10 @@ Component({
     height: {
       type: String,
       value: '80%'
+    },
+    confirmType: {
+      type: String,
+      value: ''
     }
   },
 
@@ -38,6 +42,6 @@ Component({
     confirm() {
       this.setData({ show: false })
       this.triggerEvent('confirm')
-    }
+    },
   }
 })

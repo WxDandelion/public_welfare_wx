@@ -187,4 +187,10 @@
     width: 642rpx;
     font-size: 28rpx;
 }
+.mini-btn {
+    width: 300rpx;
+    margin: 20rpx auto;
+    border-color: #ca1f10 !important;
+    color: #ca1f10 !important;
+}
 @import "../../lib/wxParse/wxParse.wxss";

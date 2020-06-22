@@ -1,0 +1,143 @@
+.container{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  padding: 96rpx 40rpx;
+  background: #fff;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login {
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login .first-line {
+  position: relative;
+  height: 80rpx;
+  border-bottom: 1rpx solid rgb(217, 217, 217);
+  width: 600rpx;
+  margin-bottom: 20rpx;
+}
+
+.login .first-line input {
+  padding-left: 20rpx;
+  height: 80rpx;
+}
+
+.login .second-line {
+  position: relative;
+  height: 80rpx;
+  display: flex;
+  width: 600rpx;
+  margin-bottom: 20rpx;
+}
+
+.login .second-line input {
+  height: 80rpx;
+  width: 350rpx;
+  margin-right: 20rpx;
+  border-bottom: 1rpx solid rgb(217, 217, 217);
+  padding-left: 20rpx;
+}
+
+.login .second-line .clear {
+  position: absolute;
+  top: 26rpx;
+  left: 288rpx;
+  z-index: 2;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
+}
+
+.login .second-line button {
+  text-align: center;
+  height: 84rpx;
+  line-height: 84rpx;
+  width: 250rpx;
+  font-size: 30rpx;
+  background-color: #ca1f10;
+  color: #fff;
+}
+
+.login .password-second-line {
+  height: 80rpx;
+  display: flex;
+  width: 600rpx;
+  margin-bottom: 50rpx;
+}
+
+.login .password-second-line input {
+  height: 80rpx;
+  width: 600rpx;
+  border-bottom: 1rpx solid rgb(217, 217, 217);
+  padding-left: 20rpx;
+}
+
+.third-line {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600rpx;
+}
+
+.third-line button {
+  width: 100%;
+  height: 80rpx;
+  margin-top: 50rpx;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #ca1f10;
+  color: #fff;
+}
+
+.login-type {
+  width: 600rpx;
+  margin: 60rpx auto 0 auto;
+  padding: 20rpx 0 20rpx;
+  font-size: 32rpx;
+  text-align: right;
+  text-decoration: underline;
+}
+
+.form-item{
+  position: relative;
+  background: #fff;
+  margin-bottom: 20rpx;
+  width: 600rpx;
+  height: 80rpx;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.form-item .password{
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 79rpx;
+  padding-left: 20rpx;
+  background: #fff;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.first-line .clear, .form-item .clear{
+  position: absolute;
+  top: 26rpx;
+  right: 18rpx;
+  z-index: 2;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
+}
+

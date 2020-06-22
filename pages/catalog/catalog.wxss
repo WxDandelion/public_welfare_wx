@@ -161,3 +161,65 @@ page {
   height: 72rpx;
   width: 144rpx;
 }
+
+.search-header{
+  width: 750rpx;
+  height: 70rpx;
+  display: flex;
+  background: #fff;
+  /* border-bottom: 1px solid rgba(0,0,0,.15); */
+  padding: 10rpx 0 10rpx 0;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.search-header .input-box{
+  position: relative;
+  margin-top: 10rpx;
+  float: left;
+  width: 0;
+  flex: 1;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 20rpx;
+  background: #f4f4f4;
+  font-size: 23rpx;
+}
+
+.search-header .icon{
+  position: absolute;
+  top: 14rpx;
+  left: 20rpx;
+  width: 31rpx;
+  height: 31rpx;
+}
+
+.search-header .del{
+  position: absolute;
+  top: 3rpx;
+  right: 10rpx;
+  width: 53rpx;
+  height: 50rpx;
+  z-index: 10;
+}
+
+.search-header .keywrod{
+  position: absolute;
+  top: 0;
+  left: 40rpx;
+  width: 506rpx;
+  height: 59rpx;
+  padding-left: 30rpx;
+}
+
+.search-header .right{
+  margin-top: 13rpx;
+  margin-left: 31rpx;
+  margin-right: 6rpx;
+  width: 58rpx;
+  height: 43rpx;
+  font-size: 23rpx;
+  line-height: 43rpx;
+  float: right;
+}
+

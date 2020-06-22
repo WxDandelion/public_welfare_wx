@@ -1,5 +1,5 @@
 .mask{
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
@@ -30,7 +30,9 @@
 
 .cancel-btn, .confirm-btn{
   flex: 1;
+  width: calc(50% - 1rpx);
   height: 100rpx;
+  border-radius: 0;
   line-height: 100rpx;
   text-align: center;
   font-size: 32rpx;

@@ -17,12 +17,15 @@ Page({
     that.setData({
       id: parseInt(options.id)
     });
+    wx.setStorageSync('shareUrl', '/pages/topicDetail/topicDetail?id=' + options.id);
 
     util.request(api.TopicDetail, { id: that.data.id}).then(function (res) {
       if (res.errno === 0) {
         that.setData({
           topic: res.data,
         });
+        wx.setStorageSync('shareName', res.data.title);
+        wx.setStorageSync('shareImgUrl', res.data.scene_pic_url);
 
         WxParse.wxParse('topicDetail', 'html', res.data.content, that);
       }

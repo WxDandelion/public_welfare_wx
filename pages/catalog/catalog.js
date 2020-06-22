@@ -9,10 +9,47 @@ Page({
     scrollLeft: 0,
     scrollTop: 0,
     goodsCount: 0,
-    scrollHeight: 0
+    scrollHeight: 0,
+    keyword: "",
+    keywordInput: '',
   },
   onLoad: function (options) {
     this.getCatalog();
+  },
+  inputChange: function (e) {
+    this.setData({
+      keyword: e.detail.value,
+    });
+  },
+  clearKeyword: function () {
+    this.setData({
+      keyword: '',
+      keywordInput: '',
+    });
+  },
+  onKeywordConfirm: function() {
+    let that = this;
+    util.request(api.SearchGoods, {name: that.data.keyword}, 'GET').then(function (res) {
+      if (res.errno === 0) {
+        if(res.data.length) {
+          that.setData({
+            keyword: '',
+            keywordInput: '',
+          })
+          wx.navigateTo({
+            url: '/pages/goods/goods?id=' + res.data[0].id,
+          })
+        } else {
+          wx.showToast({
+            title: '暂无对应商品',
+          })
+        }
+      } else {
+        wx.showToast({
+          title: '搜索失败，请稍后再试',
+        })
+      }
+    });
   },
   getCatalog: function () {
     //CatalogList

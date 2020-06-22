@@ -4,8 +4,8 @@
 .menu{background-color: #fff;  border-bottom: 1px solid #f7f7f7;}
 .menu .item{width: 20%;height: 85rpx; line-height: 85rpx; text-align: center; box-sizing: border-box;}
 .menu .item.on{color: #ff3d3d; border-bottom: 1px solid #ff3d3d;}
-.orders-list {max-height: calc(100vh - 225rpx)}
-
+.orders-list {max-height: calc(100vh - 100rpx)}
+/* calc(100vh - 225rpx)} */
 .orders-list .items{background-color: #fff; margin-bottom: 20rpx;}
 .orders-list .items .numbers{height: 80rpx; line-height: 80rpx; padding: 0 20rpx; border-bottom: 1px solid #f7f7f7;justify-content:space-between;}
 .del{font-size:40rpx!important;color:#CCCCCC!important;}

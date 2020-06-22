@@ -116,18 +116,20 @@ Page({
 
         wx.hideLoading();
 
-        wx.showToast({
-          title: res.data,
-          icon: 'success',
-          duration: 2000,
-          complete: function () {
             that.setData({
               index: 0,
               content: '',
               contentLength: 0,
               mobile: ''
             });
-          }
+        wx.navigateBack({
+          delta: 1,
+          complete: (res) => {
+            wx.showToast({
+              title: '求助申请成功',
+              duration: 2000,
+            })
+          },
         });
       } else {
         util.showErrorToast(res.data);

@@ -1,9 +1,17 @@
 <view class="container">
   <view class="search">
-    <navigator url="/pages/search/search" class="input">
+    <!-- <navigator url="/pages/search/search" class="input">
       <image class="icon"></image>
       <text class="txt">商品搜索, 共{{goodsCount}}款好物</text>
-    </navigator>
+    </navigator> -->
+    <view class="search-header">
+      <view class="input-box">
+         <image class="icon" src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/search2-2fb94833aa.png"></image>
+         <input name="input" class="keywrod" value="{{keywordInput}}" bindinput="inputChange" bindconfirm="onKeywordConfirm" confirm-type="search" placeholder="搜索更多商品" />
+         <image class="del" wx:if="{{keyword}}" bindtap="clearKeyword" src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/clearIpt-f71b83e3c2.png"></image>
+      </view>
+      <view class="right" bindtap="onKeywordConfirm">搜索</view>
+   </view>
   </view>
   <view class="catalog">
     <scroll-view class="nav" scroll-y="true">

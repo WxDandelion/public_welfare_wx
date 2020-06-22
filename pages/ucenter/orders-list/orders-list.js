@@ -10,14 +10,15 @@ Page({
   data: {
     //url: app.globalData.urlImages,
     page: [1, 1, 1, 1, 1],
-    size: 5,
+    size: 10,
     nomore: [false, false, false, false, false],
-    totalPages: [],
-    nowstatus: "",
+    loading: [false, false, false, false, false],
+    total: [],
+    nowstatus: -1,
     orderlist: [[],[],[],[],[]],
     orderlist_all: [],
     search: "",
-    title: "暂无订单",
+    title: "",
     hidden: false
   },
   setTouchMove: function (e) {
@@ -34,67 +35,54 @@ Page({
       nowstatus: parseInt(options.nowstatus) - 1
     });
     this.getorderlist(parseInt(options.nowstatus) - 1);
-    // if (parseInt(options.nowstatus)){
-    //   this.setData({
-    //     nowstatus: (parseInt(options.nowstatus) - 1).toString()
-    //   })
-    //   this.getorderlist(parseInt(options.nowstatus) - 1);
-    // } else {
-    //   this.getorderlist("");
-    // }
   },
   getorderlist:function(e){
-    var that = this;
-    var search = that.data.search;
     let status = e;
+    let tmpStatus = parseInt(status) + 1;
+    var that = this;
+    let { nomore, loading, total, page, orderlist, search, size} = that.data;
+    if(this.data.loading[tmpStatus]) {
+      return
+    }
+    if(nomore[tmpStatus]) {
+      return
+    }
     //let status = that.data.nowstatus;
-    let total = that.data.totalPages;
-    let nomore = that.data.nomore;
-    if (total[status + 1] && total[status + 1] <= that.data.page[status + 1] - 1) {
-      nomore[status + 1] = true; 
-      that.setData({
-        nomore: nomore,
-        title: "全部加载完成",
-        hidden: true
-      })
-      return;
-     }
-     /* 效果不太好
-    that.setData({
-      title: "玩命加载中..."
-    })
-    */
-   let orderlist = that.data.orderlist;
-   let page = that.data.page;
+    loading[tmpStatus] = true;
+    that.setData({loading: loading, title:'玩命加载中'});
    let params = {
-     page: page[status + 1],
-     size: that.data.size,
-     status: status
+     page: page[tmpStatus],
+     size: size,
+     status: parseInt(status)
    };
     util.request(api.OrderList, params).then(function (res) {
       if (res.errno === 0) {
-        total[status + 1] = res.data.totalPages;
-        page[status + 1] = res.data.currentPage + 1
-        if(orderlist[status + 1].length) {
-          orderlist[status + 1] = orderlist[status + 1].concat(res.data.data);
+        total[tmpStatus] = res.data.count;
+        page[tmpStatus] = page[tmpStatus] + 1
+        if(orderlist[tmpStatus].length) {
+          orderlist[tmpStatus] = orderlist[tmpStatus].concat(res.data.data);
         } else {
-          orderlist[status + 1] = res.data.data;
+          orderlist[tmpStatus] = res.data.data;
         }
+        nomore[tmpStatus] = res.data.count > orderlist[tmpStatus].length ? false : true;
+        loading[tmpStatus] = false;
         that.setData({
-          title: "加载更多",
+          title: res.data.count > orderlist[tmpStatus].length ? "加载更多" : (orderlist[tmpStatus].length == 0 ? "暂无订单" : "全部加载完成"),
+          nomore: nomore,
           orderlist_all: res.data.data,
           page: page,
-          totalPages: total,
-          orderlist: orderlist
+          total: total,
+          orderlist: orderlist,
+          loading: loading
         })
         wx.hideLoading();
       }
-    }
-    )},
+    })
+  },
   statusClick:function(e){
     var nowstatus = e.currentTarget.dataset.show;
     this.setData({
-       nowstatus: nowstatus,
+       nowstatus: parseInt(nowstatus),
        title: "玩命加载中...",
        hidden: false
     });

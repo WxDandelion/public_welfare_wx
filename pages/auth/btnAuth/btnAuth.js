@@ -73,6 +73,7 @@ Page({
           wx.setStorageSync('userMobile', res.data.userMobile);
           wx.setStorageSync('userLevelId', res.data.userlevelId);
           wx.setStorageSync('socialNumber', res.data.socialNumber);
+          wx.setStorageSync('idForShow', res.data.idForShow);
         } else {
           // util.showErrorToast(res.errmsg)
           wx.showModal({

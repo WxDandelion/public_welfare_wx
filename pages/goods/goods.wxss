@@ -19,7 +19,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .service-policy .item{
@@ -34,7 +34,8 @@
 
 .goods-info{
     width: 750rpx;
-    height: 306rpx;
+    /* height: 306rpx; */
+    height: 110rpx;
     overflow: hidden;
     background: #fff;
 }
@@ -44,7 +45,7 @@
     width: 718.75rpx;
     height: 100%;
     margin-left: 31.25rpx;
-    padding: 38rpx 31.25rpx 38rpx 0;
+    padding: 36rpx 31.25rpx 28rpx 0;
     border-bottom: 1px solid #f4f4f4;
 }
 
@@ -524,6 +525,20 @@
     
 }
 
+.bottom-btn .mid {
+    border:1px solid #b4282d;
+    background: #b4282d;
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 96rpx;
+    flex: 1;
+    text-align: center;
+    color: #fff;
+}
+
 .bottom-btn .l.l-collect{
     border-right: none;
     border-left: none;
@@ -564,10 +579,15 @@
 
 .bottom-btn .l .icon{
     display: block;
-    height: 44rpx;
-    width: 44rpx;
+    height: 70rpx;
+    width: 70rpx;
 }
 
+.bottom-btn .mid .icon{
+    display: block;
+    height: 70rpx;
+    width: 70rpx;
+}
 
 .bottom-btn .c{
     float: left;
@@ -591,12 +611,27 @@
     color: #fff;
 }
 @import "../../lib/wxParse/wxParse.wxss";
-
-.attr-pop{
+.attr-mask {
+    position: fixed;
+    top: 0;
     width: 100%;
     height: 100%;
+    opacity: 1;
+}
+.attr-pop{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 85%;
     padding: 31.25rpx;
     background: #fff;
+}
+.attr-pop .close-icon {
+    position: absolute;
+    top: 20rpx;
+    right: 15rpx;
+    width: 50rpx;
+    height: 50rpx;
 }
 
 .attr-pop .img-info{

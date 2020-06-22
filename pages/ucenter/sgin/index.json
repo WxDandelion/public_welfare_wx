@@ -1,5 +1,5 @@
 {
-    "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "签到中心",
     "usingComponents": {
       "home": "/component/home/index"
     }

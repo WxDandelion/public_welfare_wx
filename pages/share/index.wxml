@@ -1,0 +1,24 @@
+<view class="share-wrap" catchtouchmove="preventDefault">
+  <view class="share-container">
+    <image mode="widthFix" src="{{sharePath}}" class="share-image" />
+    <view class="btn-group">
+      <button class="share-btn" open-type="share">微信好友</button>
+      <button class="save-btn" bindtap="handlePhotoSaved">保存图片</button>
+    </view>
+  </view>
+</view>
+<painter style="position: absolute; top: -9999rpx;" palette="{{imgDraw}}" bind:imgOK="onImgOK"/>
+<modalView show="{{isModal}}" height='25%' confirmType="openSetting">
+   <view class='modal'> 
+      <view class="title">提示</view>
+      <view class="info">您未开启保存图片到相册的权限，请点击确定去开启权限！</view>
+   </view>
+</modalView>
+<view class='signTip acea-row row-center-wrapper' wx-if="{{active}}">
+  <view class='signTipLight loadingpic'></view>
+  <view class='signTipCon'>
+    <view class='state'>谢谢您的捐赠</view>
+    <view class='integral'>获得{{integral}}积分</view>
+    <view class='signTipBnt' bindtap='close'>好的</view>
+  </view>
+</view>

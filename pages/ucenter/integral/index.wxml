@@ -28,7 +28,7 @@
         <view class='item acea-row row-between-wrapper' wx:for="{{integralList}}" wx:key>
            <view>
               <view class='state'>{{item.mark}}</view>
-              <view>{{item.createTime}}</view>
+              <view>{{item.modifyTime ? item.modifyTime : item.createTime}}</view>
            </view>
            <view class='num font-color' wx:if="{{item.pm}}">+{{item.balance}}</view>
            <view class='num' wx:else>-{{item.balance}}</view>
@@ -48,11 +48,11 @@
            <view class='name'>每日签到可获得积分奖励</view>
            <view class='earn'>赚积分</view>
         </navigator>
-         <navigator class='item acea-row row-between-wrapper' hover-class='none' url='/pages/donation/donation'>
+         <!-- <navigator class='item acea-row row-between-wrapper' hover-class='none' url='/pages/donation/donation'>
            <view class='pictrue'><image src='/images/score.png'></image></view>
            <view class='name'>献出爱心捐赠可获得积分奖励</view>
            <view class='earn'>赚积分</view>
-        </navigator>
+        </navigator> -->
      </view>
   </view>
 </view>

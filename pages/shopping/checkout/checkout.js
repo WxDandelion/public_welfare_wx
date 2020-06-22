@@ -144,6 +144,8 @@ Page({
   },
 
   submitOrder: function () {
+    let that = this;
+    let uid = wx.getStorageSync('userId');
     if (this.data.addressId <= 0) {
       util.showErrorToast('请选择收货地址');
       return false;
@@ -152,8 +154,11 @@ Page({
       if (res.errno === 0) {
         const orderId = res.data.orderInfo.id;
         pay.payOrder(parseInt(orderId)).then(res => {
+          // wx.redirectTo({
+          //   url: '/pages/share/index?type=0&nmoney=' + that.data.goodsTotalPrice
+          // })
           wx.redirectTo({
-            url: '/pages/payResult/payResult?status=1&orderId=' + orderId
+            url: '/pages/payResult/payResult?status=1&orderId=' + orderId + '&nmoney=' + that.data.goodsTotalPrice
           });
         }).catch(res => {
           wx.redirectTo({

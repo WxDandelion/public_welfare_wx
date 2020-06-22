@@ -23,7 +23,8 @@ Page({
     openAttr: false,
     noCollectImage: "/static/images/icon_collect.png",
     hasCollectImage: "/static/images/icon_collect_checked.png",
-    collectBackImage: "/static/images/icon_collect.png"
+    collectBackImage: "/static/images/icon_collect.png",
+    shareImage: "https://i.loli.net/2020/06/15/fQ8E2AnmO6lLSw4.png"
   },
   getGoodsInfo: function () {
     let that = this;
@@ -40,6 +41,8 @@ Page({
           productList: res.data.productList,
           userHasCollect: res.data.userHasCollect
         });
+        wx.setStorageSync('shareName', res.data.info.name);
+        wx.setStorageSync('shareImgUrl', res.data.info.list_pic_url)
           //设置默认值
           that.setDefSpecInfo(that.data.specificationList);
         if (res.data.userHasCollect == 1) {
@@ -184,6 +187,7 @@ Page({
       id: parseInt(options.id)
       // id: 1181000
     });
+    wx.setStorageSync('shareUrl', 'pages/goods/goods?id=' + options.id);
     var that = this;
     this.getGoodsInfo();
     util.request(api.CartGoodsCount).then(function (res) {
@@ -209,17 +213,23 @@ Page({
       }
     });
   },
+  closeAttr: function() {
+    this.setData({
+      openAttr: false,
+    })  
+  },
   onReady: function () {
     // 页面渲染完成
 
   },
   onShow: function () {
     // 页面显示
-
   },
   onHide: function () {
     // 页面隐藏
-
+    this.setData({
+      openAttr: false,
+    });
   },
   onUnload: function () {
     // 页面关闭
@@ -317,13 +327,13 @@ Page({
       util.request(api.BuyAdd, { goodsId: this.data.goods.id, number: this.data.number, productId: checkedProduct[0].id }, "POST",'application/json')
         .then(function (res) {
           let _res = res;
+          // that.setData({
+          //   openAttr: !that.data.openAttr,
+          // });
           if (_res.errno == 0) {
-            that.setData({
-              openAttr: !that.data.openAttr,
-            });
             wx.navigateTo({
               url: '/pages/shopping/checkout/checkout?isBuy=true',
-            })
+            });
           } else {
             wx.showToast({
               image: '/static/images/icon_error.png',

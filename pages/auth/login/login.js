@@ -1,10 +1,14 @@
 var api = require('../../../config/api.js');
+var util = require('../../../utils/util.js');
 var app = getApp();
 Page({
   data: {
     username: '',
+    usernaemInput: '',
     password: '',
+    passwordInput: '',
     code: '',
+    codeInput: '',
     loginErrorCount: 0
   },
   onLoad: function (options) {
@@ -44,32 +48,38 @@ Page({
       });
       return false;
     }
-
-    wx.request({
-      url: api.Login,
-      data: {
-        username: that.data.username,
-        password: that.data.password
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        if(res.data.code == 200){
-          that.setData({
-            'loginErrorCount': 0
-          });
-          wx.setStorage({
-            key:"token",
-            data: res.data.data.token,
-            success: function(){
-              wx.switchTab({
-                url: '/pages/ucenter/index/index'
-              });
-            }
-          });
-        }
+    let params = {
+      mobile: that.data.username,
+      password: that.data.password
+    };
+    util.request(api.Login, params).then(function (res) {
+      console.log(res);
+      if (res.errno === 0) {
+        that.setData({
+          'loginErrorCount': 0
+        });
+        res.data.userInfo.avatarUrl = res.data.userInfo.avatarUrl ? res.data.userInfo.avatarUrl : '/static/images/default-avatar.jpg';
+        //存储用户信息
+        wx.setStorageSync('userInfo', res.data.userInfo);
+        wx.setStorageSync('token', res.data.token);
+        wx.setStorageSync('userId', res.data.userId);
+        wx.setStorageSync('userRegTime', res.data.userRegTime);
+        wx.setStorageSync('userDeduIntegral', res.data.userDeduIntegral);
+        wx.setStorageSync('userDonaIntegral', res.data.userDonaIntegral);
+        wx.setStorageSync('userTaskIntegral', res.data.userTaskIntegral);
+        wx.setStorageSync('userMobile', res.data.userMobile);
+        wx.setStorageSync('userLevelId', res.data.userlevelId);
+        wx.setStorageSync('socialNumber', res.data.socialNumber);
+        wx.setStorageSync('idForShow', res.data.idForShow);
+        wx.switchTab({
+          url: '/pages/ucenter/index/index',
+        })
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '登录失败，请稍后再试',
+          showCancel: false
+        })
       }
     });
   },
@@ -95,17 +105,20 @@ Page({
     switch (e.currentTarget.id) {
       case 'clear-username':
         this.setData({
-          username: ''
+          username: '',
+          usernaemInput: '',
         });
         break;
       case 'clear-password':
         this.setData({
-          password: ''
+          password: '',
+          passwordInput: '',
         });
         break;
       case 'clear-code':
         this.setData({
-          code: ''
+          code: '',
+          codeInput: '',
         });
         break;
     }

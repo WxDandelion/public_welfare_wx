@@ -114,7 +114,6 @@ Page({
     var that= this;
     let taskList = [];
     let sumIntegral = that.data.integral;
-    //console.log(that.data.vipList);
     that.data.vipList.forEach(item => {
       let curTask = [];
       let obj = {};

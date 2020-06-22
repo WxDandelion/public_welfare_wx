@@ -6,6 +6,8 @@ const user = require('../../services/user.js');
 const app = getApp()
 Page({
   data: {
+    keyword: "",
+    keywordInput: '',
     newGoods: [],
     newWelfare: [],
     hotGoods: [],
@@ -24,6 +26,7 @@ Page({
     styIssue: [],
     poorIssue: [],
     fundIssue: [],
+    numToChn: ["一", "二", "三", "四"],
     type: [{
       name: "心理咨询",
       url: "https://i.loli.net/2020/06/03/zdPZQwhWy8lkv3E.png"},{
@@ -32,7 +35,8 @@ Page({
       name: "助力扶贫",
       url: "https://i.loli.net/2020/06/03/5aLOugdAIZJfUiX.png"},{
       name: "善款筹集",
-      url: "https://i.loli.net/2020/06/03/N1mWCJhZSsi3Pnz.png"}]
+      url: "https://i.loli.net/2020/06/03/N1mWCJhZSsi3Pnz.png"}],
+      shopList: ["用户王**购买了", "微信用户晓*购买了", "微信用户然*购买了", "用户李**购买了"],
   },
   onShareAppMessage: function () {
     return {
@@ -78,8 +82,20 @@ Page({
     var data = new Object();
     util.request(api.IndexUrlNewGoods).then(function (res) {
       if (res.errno === 0) {
-        data.newGoods= res.data.newGoodsList
-      that.setData(data);
+      let length = res.data.newGoodsList.length;
+      let list = that.data.shopList;
+      if(length != 0) {
+        list.forEach((item, index) => {
+          let rand = Math.floor(Math.random() * (length));
+          list[index] = list[index] + res.data.newGoodsList[rand].name
+        })
+      } else {
+        list = [];
+      }
+      that.setData({
+        newGoods: res.data.newGoodsList,
+        shopList: list
+      });
       }
     });
     util.request(api.IndexUrlHotGoods).then(function (res) {
@@ -126,6 +142,51 @@ Page({
            });
          }
        })
+  },
+  inputChange: function (e) {
+    this.setData({
+      keyword: e.detail.value,
+      searchStatus: false
+    });
+  },
+  clearKeyword: function () {
+    this.setData({
+      keyword: '',
+      keywordInput: '',
+    });
+  },
+  onKeywordConfirm: function() {
+    let that = this;
+    util.request(api.SearchGoods, {name: that.data.keyword}, 'GET').then(function (res) {
+      if (res.errno === 0) {
+        if(res.data.length) {
+          that.setData({
+            keyword: '',
+            keywordInput: '',
+          })
+          wx.navigateTo({
+            url: '/pages/goods/goods?id=' + res.data[0].id,
+          })
+        } else {
+          wx.showToast({
+            title: '暂无对应服务',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      } else {
+        wx.showToast({
+          title: '搜索失败，请稍后再试',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
+  },
+  goCatalog: function() {
+    wx.switchTab({
+      url: '/pages/catalog/catalog',
+    })
   },
   onLoad: function (options) {
     this.getIndexData();

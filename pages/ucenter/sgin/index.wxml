@@ -18,7 +18,7 @@
             <view class='num {{ item.is_sgin ? "on" : "" }}'>+{{item.sign_num}}</view>
          </view>
       </view>
-      <button class='but bg-color on' wx:if="{{is_day_sgin}}">已签到</button>
+      <button class='but bg-color on' wx:if="{{is_day_sign}}">已签到</button>
       <form bindsubmit="goSign" report-submit='true' wx:else>
         <button class='but bg-color' formType="submit">立即签到</button>
       </form>

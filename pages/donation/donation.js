@@ -34,12 +34,14 @@ Page({
     * 生命周期函数--登录
     */
   goLogin: function () {
-    wx.navigateTo({
-      url: '/pages/auth/login/login',
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
+    if(!userInfo.nickName) {
+      wx.navigateTo({
+        url: '/pages/auth/login/login',
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    }
   },
 
   getUserInfo:function(){
@@ -86,9 +88,10 @@ Page({
    } else {
      util.request(api.Donation, {balance: wmoney}).then(function (res) {
          if (res.errno === 0) {
-           wx.navigateTo({
-             url: '/pages/certify/certify?id='+uid+'&nmoney='+wmoney
+           wx.redirectTo({
+             url: '/pages/share/index?type=0&nmoney=' + wmoney
            });
+           
          } else {
            util.showErrorToast(res.data);
          }

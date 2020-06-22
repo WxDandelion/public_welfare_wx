@@ -12,7 +12,8 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
       orderId: options.orderId || 24,
-      status: options.status
+      status: options.status,
+      nmoney: options.nmoney || 0,
     })
     this.updateSuccess()
   },

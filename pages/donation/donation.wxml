@@ -8,9 +8,9 @@
             <view class='acea-row row-middle'>
                <view class='name line1' bindtap='goLogin'>{{userInfo.nickName ? userInfo.nickName : '请点击授权'}}</view>
             </view>
-            <view class='acea-row row-middle'>
+            <!-- <view class='acea-row row-middle'>
                <view class='id' data-url='/pages/ucenter/user_info/index' bindtap='goPages' wx:if='{{uid}}'>ID：1000{{uid || 0}}<text class='iconfont icon-bianji1'></text></view>
-          </view>
+          </view> -->
         </view>
      </view>
   </view>

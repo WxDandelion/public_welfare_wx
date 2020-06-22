@@ -1,5 +1,6 @@
-const API_BASE_URL = 'http://localhost:8080/platform/api/';
-// http://62.234.138.48:80/api/
+const API_BASE_URL = 'https://www.celysion.com/api/';
+// https://www.celysion.com/api/
+// http://62.234.138.48:80/api/  https://wx.35kds.com/api/
 //'http://192.168.1.194:8080/platform/api/';
 //'http://192.168.1.2:8080/platform-framework/api/';
 module.exports = {
@@ -12,6 +13,8 @@ module.exports = {
     IndexUrlChannel: API_BASE_URL + 'index/channel', //banner下的分类
     CatalogList: API_BASE_URL + 'catalog/index',  //分类目录全部分类数据接口
     CatalogCurrent: API_BASE_URL + 'catalog/current',  //分类目录当前分类数据接口
+
+    CreateCode: API_BASE_URL + 'code/erweima',  //生成二维码
 
     AuthLoginByWeixin: API_BASE_URL + 'auth/login_by_weixin', //微信登录
 
@@ -49,6 +52,7 @@ module.exports = {
     TopicRelated: API_BASE_URL + 'topic/related',  //相关专题
 
     SearchIndex: API_BASE_URL + 'search/index',  //搜索页面数据
+    SearchGoods: API_BASE_URL + 'goods/checkGoods', //搜索商品
     SearchHelper: API_BASE_URL + 'search/helper',  //搜索帮助
     SearchClearHistory: API_BASE_URL + 'search/clearhistory',  //搜索帮助
 
@@ -73,13 +77,18 @@ module.exports = {
     UserRankMonth: API_BASE_URL + 'user/getRankbyMonth', //用户按月排名
     UserRankWeek: API_BASE_URL + 'user/getRankbyWeek', //用户按周排名
     SmsCode: API_BASE_URL + 'user/smscode', //发送短信
+    SendMsg: API_BASE_URL + 'user/duanxinWithNum', //发送短信
+    CheckCode: API_BASE_URL + 'user/yanzheng', //验证短信
     BindMobile: API_BASE_URL + 'user/bindMobile', //绑定手机
+    BindIdForShow: API_BASE_URL + 'user/updateShowId', //绑定id
+    BindDonation:  API_BASE_URL + 'user/bangding', //公益认领
     IntegralList: API_BASE_URL + 'user/getIntegrateDetail', //积分详情
     IntegralType: API_BASE_URL + 'user/getIntegratebyTypeId', //积分分类查询
     Donation: API_BASE_URL + 'user/donation', //捐赠记录
     SignToday: API_BASE_URL + 'user/signToday', //今日签到
     SocialNumberBind: API_BASE_URL + 'user/social', //社工编号绑定
     CheckIsSocial: API_BASE_URL + 'user/checkIsSocial', //社工信息
+    EditPassword: API_BASE_URL + 'user/editPassword', //修改密码
     Login: API_BASE_URL + 'auth/login', //账号登录
     Register: API_BASE_URL + 'register/register', //注册
     CouponList: API_BASE_URL + 'coupon/list', // 优惠券列表
